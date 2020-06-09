@@ -35,4 +35,7 @@ body{
     background-color: lemonchiffon;
     position: absolute;
     transform-origin: top left;
+    text-align: center;
+    color: #EEE;
+    line-height: 2rem;
 }

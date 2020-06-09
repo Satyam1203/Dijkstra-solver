@@ -39,3 +39,19 @@ body{
     color: #EEE;
     line-height: 2rem;
 }
+.options{
+    position: absolute;
+    top:0;
+    z-index:1
+}
+.path{
+    position: absolute;
+    bottom:0;
+    right: 0;
+    height: min-content;
+    color: #FFF;
+    overflow: scroll;
+    width: 40%;
+    min-width: 300px;
+    background-color: rgba(146, 146, 146, 0.5);
+}

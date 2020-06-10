@@ -5,6 +5,8 @@ let visited = [];
 let unvisited = [];
 let dist;
 
+alert("Read instructions before proceeding by clicking i-icon in the top-right corner");
+
 // It is called when user starts adding edges by clicking on button given
 const addEdges = () => {
     addEdge = true; 
@@ -105,7 +107,9 @@ const drawUsingId = (ar) => {
 }
 
 // Function to find shortest path from given source to all other nodes
-const findShortestPath = (source) => {
+const findShortestPath = (el) => {
+    let source = Number(el.previousElementSibling.value);
+    console.log(source);
     let parent = [];
     parent[source] = -1;
     visited = [];
@@ -151,6 +155,7 @@ const findShortestPath = (source) => {
 
 
 const indicatePath = (parentArr,src)=>{
+    document.getElementsByClassName('path')[0].innerHTML = '';
     for(i=0;i<cnt;i++){
         let p = document.createElement('p');
         p.innerText = ("Node " + i + " --> " + src);

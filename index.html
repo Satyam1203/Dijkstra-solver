@@ -8,9 +8,19 @@
     <title>Dijkstra</title>
 </head>
 <body>
-    <div class="options">
-        <button id="add-edge-enable" onclick="addEdges()">Add edges </button>
-    </div>
+    <header>
+        <div class="title">
+            Dijkstra Solver
+            <a href="./instructions.html"><img src="https://cdn4.iconfinder.com/data/icons/web-mobile1/100/Untitled-8-512.png" alt=""></a>
+        </div>
+        <div class="options">
+            <button class="outline-btn" id="add-edge-enable" onclick="addEdges()">Add edges </button>
+            <div>
+                <input type="text" inputmode="numeric" id="source-node" placeholder="Source Node" />
+                <button class="outline-btn" onclick="findShortestPath(this)">Run</button>
+            </div>
+        </div>
+    </header>
     <div class="block-dijk">
         
     </div>

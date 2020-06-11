@@ -81,8 +81,16 @@ const drawLine = (x1,y1,x2,y2,ar) => {
     line.style.left = `${x1}px`;
     line.style.top = `${y1}px`;
     let p = document.createElement('p');
+    p.classList.add('edge-weight');
     p.innerText = Math.round(len/10);
     p.contentEditable='true';
+    p.addEventListener('blur', (e)=>{
+        n1 = Number(p.closest('.line').id[5]);
+        n2 = Number(p.closest('.line').id[6]);
+        // console.log(p.closest('.line'), e.target.innerText, n1, n2);
+        dist[n1][n2] = Number(e.target.innerText);
+        dist[n2][n1] = Number(e.target.innerText);
+    })
     line.style.transform = `rotate(${
         (x1>x2) ? Math.PI + Math.atan(slope) : 
         Math.atan(slope)}rad)`;
@@ -158,10 +166,9 @@ const findShortestPath = (el) => {
         }
         cost[mini]=Infinity;
     }
-    console.log(visited);
-    console.log(minCost);
+    console.log("Minimum Cost", minCost);
     for(i=0;i<cnt;i++) parent[i]===undefined ? parent[i]=source : null;
-    console.log(parent);
+    // console.log(parent);
     indicatePath(parent,source);
 }
 

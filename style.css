@@ -57,6 +57,11 @@ body{
     color: #EEE;
     line-height: 2rem;
 }
+.line .edge-weight{
+    padding:0 10px;
+    width: max-content;
+    margin: auto;
+}
 header{
     width: 100%;
     padding:20px;
@@ -67,11 +72,15 @@ header .title{
     font-size: 2rem;
     color: #FFF
 }
-header .title a{
+header .title a:nth-child(2){
     width: 40px;
     height: 40px;
     position: absolute;
     right: 10px;
+}
+header .title a{
+    text-decoration: none;
+    color: #FFF;
 }
 a>img{
     width: 100%;

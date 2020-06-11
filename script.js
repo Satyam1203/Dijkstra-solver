@@ -23,6 +23,7 @@ const addEdges = () => {
 let arr = [];
 
 let appendBlock = (x,y)=>{
+    document.querySelector('.click-instruction').style.display = 'none';
     // Creating a node
     const block = document.createElement('div');
     block.classList.add('block');

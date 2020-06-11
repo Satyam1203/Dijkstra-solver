@@ -17,6 +17,15 @@ body{
     height: 100vh;
     z-index: -1;
 }
+.block-dijk .click-instruction{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    color:#fff;
+    pointer-events: none;
+    z-index: -10;
+}
 .block{
     position: absolute;
     width: 50px;
@@ -112,7 +121,7 @@ main ul>li{
     overflow-x: scroll;
     width: 40%;
     min-width: 300px;
-    background-color: rgba(146, 146, 146, 0.5);
+    background-color: rgba(146, 146, 146, 0.4);
     transition-duration: 1s;
 }
 .path::-webkit-scrollbar{

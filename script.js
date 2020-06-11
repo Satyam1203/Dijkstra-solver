@@ -5,7 +5,11 @@ let visited = [];
 let unvisited = [];
 let dist;
 
-alert("Read instructions before proceeding by clicking i-icon in the top-right corner");
+let alerted = localStorage.getItem('alerted') || '';
+    if (alerted !== 'yes') {
+        alert("Read instructions before proceeding by clicking i-icon in the top-right corner");
+       localStorage.setItem('alerted','yes');
+}
 
 // It is called when user starts adding edges by clicking on button given
 const addEdges = () => {
@@ -78,6 +82,7 @@ const drawLine = (x1,y1,x2,y2,ar) => {
     line.style.top = `${y1}px`;
     let p = document.createElement('p');
     p.innerText = Math.round(len/10);
+    p.contentEditable='true';
     line.style.transform = `rotate(${
         (x1>x2) ? Math.PI + Math.atan(slope) : 
         Math.atan(slope)}rad)`;
@@ -109,7 +114,12 @@ const drawUsingId = (ar) => {
 // Function to find shortest path from given source to all other nodes
 const findShortestPath = (el) => {
     let source = Number(el.previousElementSibling.value);
-    console.log(source);
+    if(source >= cnt || isNaN(source)){
+        alert('Invalid source');
+        return;
+    }
+    document.getElementById(source).style.backgroundColor = 'grey';
+    // console.log(source);
     let parent = [];
     parent[source] = -1;
     visited = [];
@@ -129,12 +139,14 @@ const findShortestPath = (el) => {
     // Repeating until all edges are visited
     while(unvisited.length){
         let mini = cost.indexOf(Math.min(...cost));
+        // console.log("draw", visited[visited.length-1],mini);
         visited.push(mini);
         unvisited.splice(unvisited.indexOf(mini),1);
 
         // Relaxation of unvisited edges
         for(j of unvisited){
             if(j===mini) continue;
+            // console.log(mini, j);
             if(cost[j] > dist[mini][j]+cost[mini]){
                 minCost[j] = dist[mini][j]+cost[mini];
                 cost[j] = dist[mini][j]+cost[mini];
@@ -154,20 +166,47 @@ const findShortestPath = (el) => {
 }
 
 
-const indicatePath = (parentArr,src)=>{
+const indicatePath = async (parentArr,src)=>{
     document.getElementsByClassName('path')[0].innerHTML = '';
     for(i=0;i<cnt;i++){
         let p = document.createElement('p');
         p.innerText = ("Node " + i + " --> " + src);
-        printPath(parentArr, i, p);
+        await printPath(parentArr, i, p);
     }
 }
 
-const printPath = (parent, j, el_p) => {
+const printPath = async (parent, j, el_p) => {
     if(parent[j]===-1) return;
-    printPath(parent, parent[j], el_p);
+    await printPath(parent, parent[j], el_p);
     el_p.innerText = el_p.innerText + " " + j;
 
     document.getElementsByClassName('path')[0].style.padding ='1rem';
     document.getElementsByClassName('path')[0].appendChild(el_p);
+
+    // console.log(j,parent[j]);
+
+    if(j<parent[j]){
+        let tmp = document.getElementById(`line-${j}${parent[j]}`);
+        await colorEdge(tmp);
+    }else {
+        let tmp = document.getElementById(`line-${parent[j]}${j}`);
+        await colorEdge(tmp);
+    }
+}
+
+const colorEdge = async (el) => {
+    if(el.style.backgroundColor !== 'aqua'){
+        await wait(1000);
+        el.style.backgroundColor = 'aqua';
+        el.style.height = '8px';
+    }
+}
+
+const wait = async (t)=>{
+    let pr = new Promise((resolve,reject) =>{
+        setTimeout(()=>{
+            resolve('done!')
+        }, t)
+    });
+    res = await pr;
 }

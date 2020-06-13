@@ -61,14 +61,16 @@ blocks.addEventListener('click', (e)=>{
         alert("cannot add more than 12 vertices");
         return;
     }
+    console.log(e.x,e.y);
     appendBlock(e.x,e.y);
 })
 
 // Function to draw a line between nodes
 const drawLine = (x1,y1,x2,y2,ar) => {
+    console.log(ar);
     // Length of line
     const len = Math.sqrt((x1-x2)**2 + (y1-y2)**2);
-    const slope = (x2-x1) ? (y2-y1)/(x2-x1) : null;
+    const slope = (x2-x1) ? (y2-y1)/(x2-x1) : (y2>y1 ? 90 : -90);
     
     // Adding length to distance array
     dist[Number(ar[0])][Number(ar[1])] = Math.round(len/10);
@@ -76,7 +78,7 @@ const drawLine = (x1,y1,x2,y2,ar) => {
 
     // Drawing line
     const line = document.createElement('div');
-    line.id = ar[0]<ar[1] ? `line-${ar[0]}${ar[1]}` : `line-${ar[1]}${ar[0]}`;
+    line.id = Number(ar[0])<Number(ar[1]) ? `line-${ar[0]}-${ar[1]}` : `line-${ar[1]}-${ar[0]}`;
     line.classList.add('line');
     line.style.width = `${len}px`;
     line.style.left = `${x1}px`;
@@ -85,9 +87,14 @@ const drawLine = (x1,y1,x2,y2,ar) => {
     p.classList.add('edge-weight');
     p.innerText = Math.round(len/10);
     p.contentEditable='true';
+    p.inputMode='numeric';
     p.addEventListener('blur', (e)=>{
-        n1 = Number(p.closest('.line').id[5]);
-        n2 = Number(p.closest('.line').id[6]);
+        if(isNaN(Number(e.target.innerText))){
+            alert('Enter valid edge weight');
+            return;
+        }
+        n1 = Number(p.closest('.line').id.split('-')[1]);
+        n2 = Number(p.closest('.line').id.split('-')[2]);
         // console.log(p.closest('.line'), e.target.innerText, n1, n2);
         dist[n1][n2] = Number(e.target.innerText);
         dist[n2][n1] = Number(e.target.innerText);
@@ -122,6 +129,7 @@ const drawUsingId = (ar) => {
 
 // Function to find shortest path from given source to all other nodes
 const findShortestPath = (el) => {
+    clearScreen();
     let source = Number(el.previousElementSibling.value);
     if(source >= cnt || isNaN(source)){
         alert('Invalid source');
@@ -194,10 +202,10 @@ const printPath = async (parent, j, el_p) => {
     // console.log(j,parent[j]);
 
     if(j<parent[j]){
-        let tmp = document.getElementById(`line-${j}${parent[j]}`);
+        let tmp = document.getElementById(`line-${j}-${parent[j]}`);
         await colorEdge(tmp);
     }else {
-        let tmp = document.getElementById(`line-${parent[j]}${j}`);
+        let tmp = document.getElementById(`line-${parent[j]}-${j}`);
         await colorEdge(tmp);
     }
 }
@@ -207,6 +215,15 @@ const colorEdge = async (el) => {
         await wait(1000);
         el.style.backgroundColor = 'aqua';
         el.style.height = '8px';
+    }
+}
+
+const clearScreen = ()=>{
+    document.getElementsByClassName('path')[0].innerHTML = '';
+    let lines = document.getElementsByClassName('line');
+    for(line of lines){
+        line.style.backgroundColor = '#EEE';
+        line.style.height = '5px';
     }
 }
 

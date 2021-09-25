@@ -1,33 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Dijkstra</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="title">
-            <a href="index.html">Dijkstra Solver</a>
-            <a href="./instructions.html"><img src="https://cdn4.iconfinder.com/data/icons/web-mobile1/100/Untitled-8-512.png" alt=""></a>
+      <div class="title">
+        <a href="index.html">Dijkstra Solver</a>
+        <a href="./instructions.html"
+          ><img
+            src="https://cdn4.iconfinder.com/data/icons/web-mobile1/100/Untitled-8-512.png"
+            alt=""
+        /></a>
+      </div>
+      <div class="options">
+        <div>
+          <button class="outline-btn" id="add-edge-enable" onclick="addEdges()">
+            Add edges
+          </button>
+          <button
+            class="outline-btn reset-btn"
+            onclick="resetDrawingArea()"
+            disabled
+          >
+            Clear
+          </button>
         </div>
-        <div class="options">
-            <button class="outline-btn" id="add-edge-enable" onclick="addEdges()">Add edges </button>
-            <div>
-                <input type="text" inputmode="numeric" id="source-node" placeholder="Source Node" />
-                <button class="outline-btn" onclick="findShortestPath(this)">Run</button>
-            </div>
+        <div>
+          <input
+            type="text"
+            inputmode="numeric"
+            id="source-node"
+            placeholder="Source Node"
+          />
+          <button
+            class="outline-btn run-btn"
+            onclick="findShortestPath(this)"
+            disabled
+          >
+            Run
+          </button>
         </div>
+      </div>
     </header>
-    <div class="block-dijk">
-        <p class="click-instruction">Click to create node</p>
+    <div class="drawing-area">
+      <p class="click-instruction">Click to create node</p>
     </div>
     <div class="path"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.1/gsap.min.js"></script>
-    <script src="./gsap.js"></script>
+    <!-- <script src="./gsap.js"></script> -->
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>

@@ -1,8 +1,6 @@
 let blocks = document.getElementsByClassName("drawing-area")[0];
 let addEdge = false;
 let cnt = 0;
-let visited = [];
-let unvisited = [];
 let dist;
 
 let alerted = localStorage.getItem("alerted") || "";
@@ -21,7 +19,8 @@ const addEdges = () => {
   }
 
   addEdge = true;
-  document.getElementById("add-edge-enable").disabled = "true";
+  document.getElementById("add-edge-enable").disabled = true;
+  document.getElementsByClassName("run-btn")[0].disabled = false;
   // Initializing array for adjacency matrix representation
   dist = new Array(cnt + 1)
     .fill(Infinity)
@@ -125,8 +124,8 @@ const drawLine = (x1, y1, x2, y2, ar) => {
     x1 > x2 ? Math.PI + Math.atan(slope) : Math.atan(slope)
   }rad)`;
 
-  p.style.transform = `rotate(-${
-    x1 > x2 ? Math.PI + Math.atan(slope) : Math.atan(slope)
+  p.style.transform = `rotate(${
+    x1 > x2 ? (Math.PI + Math.atan(slope)) * -1 : Math.atan(slope) * -1
   }rad)`;
 
   line.append(p);
@@ -151,7 +150,10 @@ const drawUsingId = (ar) => {
 
 // Function to find shortest path from given source to all other nodes
 const findShortestPath = (el) => {
+  let visited = [];
+  let unvisited = [];
   clearScreen();
+
   let source = Number(el.previousElementSibling.value);
   if (source >= cnt || isNaN(source)) {
     alert("Invalid source");
@@ -263,10 +265,9 @@ const resetDrawingArea = () => {
   blocks.appendChild(p);
   document.getElementById("add-edge-enable").disabled = false;
   document.querySelector(".reset-btn").disabled = true;
+  document.getElementsByClassName("path")[0].innerHTML = "";
 
   cnt = 0;
-  visited = [];
-  unvisited = [];
   dist = [];
   addEdge = false;
 };

@@ -19,16 +19,18 @@
         /></a>
       </div>
       <div class="options">
-        <button class="outline-btn" id="add-edge-enable" onclick="addEdges()">
-          Add edges
-        </button>
-        <button
-          class="outline-btn reset-btn"
-          onclick="resetDrawingArea()"
-          disabled
-        >
-          Clear
-        </button>
+        <div>
+          <button class="outline-btn" id="add-edge-enable" onclick="addEdges()">
+            Add edges
+          </button>
+          <button
+            class="outline-btn reset-btn"
+            onclick="resetDrawingArea()"
+            disabled
+          >
+            Clear
+          </button>
+        </div>
         <div>
           <input
             type="text"
@@ -36,7 +38,11 @@
             id="source-node"
             placeholder="Source Node"
           />
-          <button class="outline-btn" onclick="findShortestPath(this)">
+          <button
+            class="outline-btn run-btn"
+            onclick="findShortestPath(this)"
+            disabled
+          >
             Run
           </button>
         </div>

@@ -57,6 +57,9 @@ body {
 .outline-btn:disabled {
   box-shadow: none;
 }
+.reset-btn {
+  margin-left: 12px;
+}
 .line {
   height: 5px;
   background-color: lemonchiffon;

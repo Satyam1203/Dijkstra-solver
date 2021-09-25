@@ -1,69 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
     <style>
-        body{
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-y: scroll;
-        }
-        .inline{
-            background-color: #333;
-            position: static;
-            display: inline-block;
-            text-align: center;
-            line-height: 40px;
-            margin:1rem;
-        }
-        .continue-link{
-            padding:16px 20px;
-            border-radius: 10px;
-            outline: 0;
-            cursor: pointer;
-            margin: 1.5rem 0;
-            box-shadow: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-family: Arial, Helvetica, sans-serif;
-            letter-spacing: 1px;
-            text-decoration: none;
-            color: #333;
-            border: 2px solid #10A881;
-        }
-        .continue-link:active{
-            color:#10A881;
-        }
+      body {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: scroll;
+      }
+      .inline {
+        background-color: #333;
+        position: static;
+        display: inline-block;
+        text-align: center;
+        line-height: 40px;
+        margin: 1rem;
+      }
+      .continue-link {
+        padding: 16px 20px;
+        border-radius: 10px;
+        outline: 0;
+        cursor: pointer;
+        margin: 1.5rem 0;
+        box-shadow: none;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-family: Arial, Helvetica, sans-serif;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: #333;
+        border: 2px solid #10a881;
+      }
+      .continue-link:active {
+        color: #10a881;
+      }
     </style>
     <title>Instructions | Dijkstra Solver</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="title">
-            <a href="index.html">Dijkstra Solver</a>
-        </div>
+      <div class="title">
+        <a href="index.html">Dijkstra Solver</a>
+      </div>
     </header>
     <div class="block inline" style="margin-left: -100px">A</div>
-    <div class="block inline" style="margin-left:200px">B</div>
+    <div class="block inline" style="margin-left: 200px">B</div>
     <main>
-        <h3>Instructions</h3>
-        <ul>
-            <li>Click anywhere on the screen to create a node.</li>
-            <li>After you finished adding nodes, start adding edges.</li>
-            <li>Click button "Add edges" before adding edges.</li>
-            <li>Edges can be added by clicking one node and then other node.</li>
-            <li>All edges have default weight scaled to the size between them.</li>
-            <li>You can click on the existing weight and change it according to the need.</li>
-            <li>Enter the source vertex in input box and click "Run" to find minimum cost path.</li>
-            <li>Before clicking run, make sure all weights are as you need them to be.</li>
-        </ul>
+      <h3>Instructions</h3>
+      <ul>
+        <li>Click anywhere on the screen to create a node.</li>
+        <li>After you finished adding nodes, start adding edges.</li>
+        <li>Click button "Add edges" before adding edges.</li>
+        <li>Edges can be added by clicking one node and then other node.</li>
+        <li>All edges have default weight scaled to the size between them.</li>
+        <li>
+          You can click on the existing weight and change it according to the
+          need.
+        </li>
+        <li>
+          Enter the source vertex in input box and click "Run" to find minimum
+          cost path.
+        </li>
+        <li>
+          Before clicking run, make sure all weights are as you need them to be.
+        </li>
+      </ul>
     </main>
     <a href="index.html" class="continue-link">Continue ></a>
-</body>
+  </body>
 </html>
